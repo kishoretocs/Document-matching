@@ -1,0 +1,81 @@
+{% extends "documents/base.html" %}
+
+{% block title %}Smart Analytics Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1 class="dashboard-heading">Smart Analytics Dashboard</h1>
+
+    <h2 class="dashboard-heading">1. Scans per User per Day</h2>
+    <table class="dashboard-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Username</th>
+                <th>Number of Scans</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in scans_per_day %}
+            <tr>
+                <td>{{ record.scan_date }}</td>
+                <td>{{ record.user__username }}</td>
+                <td>{{ record.num_scans }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No scans available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="dashboard-heading">2. Most Common Scanned Document Topics</h2>
+    <table class="dashboard-table">
+        <thead>
+            <tr>
+                <th>Topic</th>
+                <th>Frequency</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word, freq in top_common_words %}
+            <tr>
+                <td>{{ word }}</td>
+                <td>{{ freq }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No topics available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="dashboard-heading">3. Credit Usage Statistics for All Users</h2>
+    <table class="dashboard-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Total Scans</th>
+                <th>Credits Used</th>
+                <th>Credits Remaining</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in credit_usage_stats %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.total_scans }}</td>
+                <td>{{ user.credits_used }}</td>
+                <td>{{ user.credits_remaining }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No user data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

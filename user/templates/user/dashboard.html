@@ -1,0 +1,23 @@
+{% extends 'user/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+Hi, {{ user.username }}!
+{% endblock %}
+
+{% block content %}
+<p>Welcome to your dashboard.</p>
+
+<div class="mt-4">
+    <a href="{% url 'profile' %}" class="text-blue-500 hover:underline">View Profile</a>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'change_password' %}" class="text-blue-500 hover:underline">Change Password</a>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'logout' %}" class="text-red-500 hover:underline">Logout</a>
+</div>
+{% endblock %}

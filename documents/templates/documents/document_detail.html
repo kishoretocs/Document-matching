@@ -1,0 +1,11 @@
+{% extends "documents/base.html" %}
+
+{% block title %}{{ document.title }}{% endblock %}
+
+{% block content %}
+    <h2>{{ document.title }}</h2>
+    <p>Uploaded at: {{ document.uploaded_at }}</p>
+    <h3>Content:</h3>
+    <pre>{{ document.text_content }}</pre>
+    <a href="{% url 'document_matches' doc_id=document.id %}">Find Similar Documents</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'user/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block header %}
+Profile
+{% endblock %}
+
+{% block content %}
+<p><strong>Username:</strong> {{ username }}</p>
+<p><strong>Email:</strong> {{ email }}</p>
+<p><strong>Date Joined:</strong> {{ date_joined }}</p>
+<p><strong>Last Login:</strong> {{ last_login }}</p>
+<h2>Welcome, {{ user.username }}</h2>
+<p>Credits: {{ user.profile.credits }}</p>
+
+<h3>Request More Credits</h3>
+<form method="post" action="{% url 'request_credits' %}">
+    {% csrf_token %}
+    <input type="number" name="credits" min="1" required>
+    <button type="submit">Request</button>
+</form>
+
+<h3>Past Credit Requests</h3>
+<ul>
+    {% for req in credit_requests %}
+        <li>{{ req.requested_credits }} credits -{{ credits }} {% if req.approved %} Approved {% else %} Pending {% endif %}</li>
+    {% endfor %}
+</ul>
+
+
+<a href="{% url 'logout' %}">Logout</a>
+{% endblock %}

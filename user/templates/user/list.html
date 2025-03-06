@@ -1,0 +1,74 @@
+{% extends "user/base.html" %}
+
+{% block title %}Pending Credit Requests{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+</style>
+
+<h1>Pending Credit Requests</h1>
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Requested Credits</th>
+            <th>Requested At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in credit_requests %}
+        <tr>
+            <td>{{ req.user.username }}</td>
+            <td>{{ req.requested_credits }}</td>
+            <td>{{ req.created_at }}</td>
+            <td>
+                <!-- Link to the approve function for this request -->
+                <a href="{% url 'approve_credits' req.id %}">Approve</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No pending credit requests.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Approved Credit Requests</h1>
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Requested Credits</th>
+            <th>Requested At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in approved_request %}
+        <tr>
+            <td>{{ req.user.username }}</td>
+            <td>{{ req.requested_credits }}</td>
+            <td>{{ req.created_at }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No approved credit requests.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
