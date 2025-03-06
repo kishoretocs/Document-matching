@@ -37,13 +37,15 @@ This project is a self-contained document scanning and matching system with a bu
 |--------|------------------------|-----------------------------------------------|
 | POST   | `/auth/register`       | User registration                             |
 | POST   | `/auth/login`          | User login (session-based)                    |
+| POST   | `/auth/logout`         | User logout                                   |
 | GET    | `/user/profile`        | Retrieve user profile and current credits     |
-| POST   | `/scan`                | Upload document for scanning (deducts 1 credit) |
-| GET    | `/matches/<docId>`     | Get matching documents for a given document   |
-| POST   | `/credits/request`     | Submit a request for additional credits       |
-| GET    | `/admin/analytics`     | Retrieve analytics data for admins            |
-| POST   | `/auth/password-change`| Change user password                         |
-| POST   | `/auth/forgot`         | Initiate password reset (forgot password)     |
+| POST   | `/user/request-credits`     | Submit a request for additional credits       |
+| POST   | `/user/list-request`     | List all request for additional credits       |
+| POST   | `/documets/ScanUpload`                | Upload document for scanning (deducts 1 credit) |
+| GET    | `documents/matches/<docId>`     | Get matching documents for a given document   |
+| GET    | `/documents/dashboard`     | Retrieve analytics data for admins            |
+| POST   | `/change-password`| Change user password                         |
+| POST   | `/reset-password`         | Initiate password reset (forgot password)     |
 
 ## Tech Stack & Technologies
 
@@ -66,5 +68,4 @@ This project is a self-contained document scanning and matching system with a bu
 ### Steps to Run the Project
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/document-scan-match.git
-   cd document-scan-match
+   git clone https://github.com/kishoretocs/Document-matching.git
